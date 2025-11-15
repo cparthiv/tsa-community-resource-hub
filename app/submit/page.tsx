@@ -65,16 +65,16 @@ export default function SubmitPage() {
       <main className="py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6 max-w-2xl">
           <div className="mb-12">
-            <h1 className="section-header mb-4">Submit a Resource</h1>
-            <p className="section-subtitle">Help us expand our community hub by sharing information about a valuable service, program, or organization.</p>
+            <h1 className="section-header mb-4" style={{ fontFamily: 'var(--font-serif)' }}>Submit a Resource</h1>
+            <p className="section-subtitle">Know a great Redmond resource we're missing? Share it with us and help your neighbors.</p>
           </div>
 
           {submitted && (
             <Card className="mb-8 p-6 bg-green-50 border border-green-200 flex items-start gap-4">
               <Check className="text-green-600 flex-shrink-0 mt-1" size={24} />
               <div>
-                <h3 className="font-semibold text-green-900 mb-1">Thank you for your submission!</h3>
-                <p className="text-green-800 text-sm">We'll review your resource and add it to our hub shortly.</p>
+                <h3 className="font-semibold text-green-900 mb-1">Thanks for sharing!</h3>
+                <p className="text-green-800 text-sm">We'll take a look and add it to the directory soon.</p>
               </div>
             </Card>
           )}
@@ -91,7 +91,7 @@ export default function SubmitPage() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="e.g., Community Food Bank"
+                  placeholder="e.g., Hopelink"
                   className={`border-border focus:border-primary/50 focus:ring-primary/20 ${errors.name ? 'border-red-500' : ''}`}
                 />
                 {errors.name && (
@@ -143,7 +143,7 @@ export default function SubmitPage() {
                   name="description"
                   value={formData.description}
                   onChange={handleChange}
-                  placeholder="Describe the resource, services offered, and key information"
+                  placeholder="What services do they offer? Who can use them?"
                   rows={5}
                   className={`w-full px-4 py-3 rounded-md border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 resize-none ${
                     errors.description ? 'border-red-500' : ''

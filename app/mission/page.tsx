@@ -9,22 +9,22 @@ const missionValues = [
   {
     icon: Heart,
     title: 'Compassion',
-    description: 'We believe in the inherent worth of every community member and approach our work with empathy and understanding.',
+    description: 'Everyone in Redmond matters. We treat every person with respect and make sure help is available when they need it.',
   },
   {
     icon: Users,
     title: 'Community',
-    description: 'We strengthen neighborhoods by connecting residents with the resources and support they need to thrive.',
+    description: 'Strong neighborhoods start with connected neighbors. We bridge the gap between people and the support available in Redmond.',
   },
   {
     icon: Lightbulb,
     title: 'Innovation',
-    description: 'We continuously seek new ways to address community challenges and improve access to vital services.',
+    description: 'We keep improving how we share information. If there\'s a better way to help people find resources, we\'ll try it.',
   },
   {
     icon: Target,
     title: 'Accessibility',
-    description: 'We ensure that all resources are easy to find, understand, and access for every member of our community.',
+    description: 'Simple, clear, and easy to use. No matter who you are or what you need, you should be able to find it here quickly.',
   },
 ]
 
@@ -39,10 +39,65 @@ export default function MissionPage() {
           <div className="max-w-3xl mx-auto text-center animate-fade-in-up">
             <h1 className="section-header mb-6">Our Mission</h1>
             <p className="text-xl text-foreground/70 leading-relaxed mb-8">
-              To empower our community by creating an inclusive, accessible hub that connects residents with the resources, 
-              services, and support they need to build stronger lives and neighborhoods.
+              We're here to make finding help in Redmond simple. No runaround, no confusion. Just straightforward connections between people and the services they need.
             </p>
             <div className="h-1 w-20 bg-primary mx-auto animate-scale-in"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Story Section */}
+      <section className="py-20 md:py-32">
+        <div className="container mx-auto px-4 md:px-6 max-w-3xl">
+          <div className="mb-12 animate-fade-in-up">
+            <h2 className="section-header mb-4">How We Started</h2>
+            <p className="text-lg text-foreground/70 leading-relaxed mb-6">
+              It started with a friend who needed help finding food assistance. They spent hours searching online, calling different numbers, and getting bounced around between organizations. By the time they found what they needed, they were exhausted and frustrated.
+            </p>
+            <p className="text-lg text-foreground/70 leading-relaxed mb-6">
+              That got us thinking. Redmond has amazing resources. Food banks, housing help, job training, health services. But finding them? That's the hard part. Information is scattered across websites, flyers, and word-of-mouth. There had to be a better way.
+            </p>
+            <p className="text-lg text-foreground/70 leading-relaxed">
+              So we started building a list. We reached out to local nonprofits, visited community centers, and talked to people who actually use these services. We wanted to know what works, what doesn't, and what's missing. In 2024, we launched this hub with 50 verified Redmond resources. Now we're growing every day, thanks to neighbors who share new resources with us.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Why We Exist */}
+      <section className="py-20 md:py-32 bg-secondary/30">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+            <div className="animate-slide-in-left">
+              <h2 className="section-header mb-6">Why This Matters</h2>
+              <p className="text-foreground/70 leading-relaxed mb-4">
+                Finding help shouldn't be hard. But too often, people in Redmond don't know where to look. Information is scattered across websites, flyers, and word-of-mouth. By the time someone finds what they need, they've already wasted hours searching.
+              </p>
+              <p className="text-foreground/70 leading-relaxed mb-4">
+                We built this hub to fix that. Everything in one place: food banks, housing help, job training, health services. No more hunting through multiple sites or calling around town.
+              </p>
+              <p className="text-foreground/70 leading-relaxed">
+                Our goal? Be the first place Redmond residents check when they need help. Simple as that.
+              </p>
+            </div>
+            <div className="animate-slide-in-right">
+              <div className="bg-primary/10 rounded-lg p-8 md:p-12 border border-primary/20">
+                <div className="space-y-6">
+                  <div>
+                    <p className="text-3xl md:text-4xl font-bold text-primary mb-2">50+</p>
+                    <p className="text-foreground/70">Redmond Resources Listed</p>
+                  </div>
+                  <div>
+                    <p className="text-3xl md:text-4xl font-bold text-primary mb-2">Growing</p>
+                    <p className="text-foreground/70">Every Day</p>
+                  </div>
+                  <div>
+                    <p className="text-3xl md:text-4xl font-bold text-primary mb-2">24/7</p>
+                    <p className="text-foreground/70">Available Online</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -51,11 +106,11 @@ export default function MissionPage() {
       <section className="py-20 md:py-32">
         <div className="container mx-auto px-4 md:px-6">
           <div className="mb-16 animate-fade-in-up">
-            <h2 className="section-header mb-4">Our Core Values</h2>
-            <p className="section-subtitle">Guiding principles that shape everything we do</p>
+            <h2 className="section-header mb-4">What Drives Us</h2>
+            <p className="section-subtitle">The values that guide everything we do</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {missionValues.map((value, index) => {
               const Icon = value.icon
               return (
@@ -76,42 +131,32 @@ export default function MissionPage() {
         </div>
       </section>
 
-      {/* Mission Statement Deep Dive */}
+      {/* What's Next */}
       <section className="py-20 md:py-32 bg-secondary/30">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="animate-slide-in-left">
-              <h2 className="section-header mb-6">Why We Exist</h2>
-              <p className="text-foreground/70 leading-relaxed mb-4">
-                Every member of our community deserves access to quality resources and support. Yet many residents don't know where 
-                to find help, don't have time to search multiple sources, or face barriers in accessing services they need.
-              </p>
-              <p className="text-foreground/70 leading-relaxed mb-4">
-                We created the Community Resource Hub to break down these barriers. By centralizing information about local nonprofits, 
-                support services, community events, and programs, we make it easier for residents to find what they need.
-              </p>
-              <p className="text-foreground/70 leading-relaxed">
-                Our goal is simple: to be the trusted, comprehensive resource that helps every community member thrive.
-              </p>
-            </div>
-            <div className="animate-slide-in-right">
-              <div className="bg-primary/10 rounded-lg p-8 md:p-12 border border-primary/20">
-                <div className="space-y-6">
-                  <div>
-                    <p className="text-3xl md:text-4xl font-bold text-primary mb-2">500+</p>
-                    <p className="text-foreground/70">Community Resources Listed</p>
-                  </div>
-                  <div>
-                    <p className="text-3xl md:text-4xl font-bold text-primary mb-2">10K+</p>
-                    <p className="text-foreground/70">Community Members Served</p>
-                  </div>
-                  <div>
-                    <p className="text-3xl md:text-4xl font-bold text-primary mb-2">24/7</p>
-                    <p className="text-foreground/70">Access to Resources Online</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div className="container mx-auto px-4 md:px-6 max-w-3xl">
+          <div className="animate-fade-in-up">
+            <h2 className="section-header mb-6">What's Next</h2>
+            <p className="text-lg text-foreground/70 leading-relaxed mb-6">
+              We're keeping it simple. Our focus is making sure every Redmond resident can find help when they need it. Here's what we're working on:
+            </p>
+            <ul className="space-y-4 text-foreground/70">
+              <li className="flex items-start gap-4">
+                <span className="text-primary font-bold text-lg">✓</span>
+                <span>Adding more resources as we discover them</span>
+              </li>
+              <li className="flex items-start gap-4">
+                <span className="text-primary font-bold text-lg">✓</span>
+                <span>Making the site easier to use on phones</span>
+              </li>
+              <li className="flex items-start gap-4">
+                <span className="text-primary font-bold text-lg">✓</span>
+                <span>Partnering with more local organizations</span>
+              </li>
+              <li className="flex items-start gap-4">
+                <span className="text-primary font-bold text-lg">✓</span>
+                <span>Keeping everything up-to-date and accurate</span>
+              </li>
+            </ul>
           </div>
         </div>
       </section>

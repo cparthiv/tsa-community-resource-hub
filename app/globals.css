@@ -76,8 +76,9 @@
 }
 
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback';
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-merriweather), Georgia, serif;
+  --font-mono: 'Courier New', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -132,6 +133,7 @@
 
 .section-header {
   @apply text-3xl md:text-4xl font-bold tracking-tight text-foreground;
+  font-family: var(--font-serif);
 }
 
 .section-subtitle {

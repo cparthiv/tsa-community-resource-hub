@@ -7,11 +7,11 @@ export function HeroSection() {
     <section className="relative w-full bg-background py-20 md:py-32">
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-8 leading-tight">
+          <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-8 leading-tight" style={{ fontFamily: 'var(--font-serif)' }}>
             Community <span className="text-primary">Resources</span> Made Simple
           </h1>
           <p className="text-xl text-foreground/60 mb-12 leading-relaxed max-w-2xl mx-auto">
-            Discover nonprofits, support services, and community programs all in one place. Connect with local resources that help your community thrive.
+            Your one-stop guide to Redmond's nonprofits, support services, and community programs. Find what you need, when you need it.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

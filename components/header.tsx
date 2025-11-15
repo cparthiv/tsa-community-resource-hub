@@ -12,7 +12,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
       <nav className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-3">
-          <span className="text-xl font-bold text-primary">Community Hub</span>
+          <span className="text-xl font-bold text-primary" style={{ fontFamily: 'var(--font-serif)' }}>Redmond Community Hub</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -22,12 +22,6 @@ export function Header() {
           </Link>
           <Link href="/mission" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">
             Mission
-          </Link>
-          <Link href="/story" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">
-            Story
-          </Link>
-          <Link href="/#featured" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">
-            Featured
           </Link>
           <Link href="/about" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">
             About
@@ -54,12 +48,6 @@ export function Header() {
               </Link>
               <Link href="/mission" className="text-sm font-medium hover:text-primary">
                 Mission
-              </Link>
-              <Link href="/story" className="text-sm font-medium hover:text-primary">
-                Story
-              </Link>
-              <Link href="/#featured" className="text-sm font-medium hover:text-primary">
-                Featured
               </Link>
               <Link href="/about" className="text-sm font-medium hover:text-primary">
                 About

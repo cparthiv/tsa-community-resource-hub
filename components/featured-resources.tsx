@@ -2,35 +2,38 @@
 
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { MapPin, Phone, ArrowRight } from 'lucide-react'
+import { MapPin, Phone, ArrowRight, Globe } from 'lucide-react'
 
 const featuredResources = [
   {
     id: 1,
-    name: 'Community Food Bank',
+    name: 'Hopelink',
     category: 'Food & Nutrition',
-    description: 'Weekly food distribution services for families in need, ensuring no one goes hungry.',
-    address: '123 Main St',
+    description: 'Food bank services, energy assistance, and emergency support for families in Redmond. Open to all community members in need.',
+    address: '15910 NE 85th St, Redmond, WA 98052',
     phone: '(555) 123-4567',
+    website: 'hopelink.org',
     icon: '🍎',
   },
   {
     id: 2,
-    name: 'Mental Health Support Services',
+    name: 'Redmond Community Resource Center',
     category: 'Health & Wellness',
-    description: 'Professional counseling and mental health resources available to all community residents.',
-    address: '456 Oak Ave',
+    description: 'Located at the Redmond Library, offering mental health assessments, substance use support, housing assistance, and employment services.',
+    address: '15990 NE 85th St, Redmond, WA 98052',
     phone: '(555) 234-5678',
+    website: 'redmond.gov',
     icon: '💚',
   },
   {
     id: 3,
-    name: 'Youth Education Programs',
-    category: 'Education',
-    description: 'Comprehensive after-school tutoring and scholarship opportunities for young adults.',
-    address: '789 Elm St',
+    name: 'YWCA Family Village Redmond',
+    category: 'Housing',
+    description: 'Permanent supportive housing with programs including Working Wardrobe, employment training, and family support services.',
+    address: '16650 NE 80th St, Redmond, WA 98052',
     phone: '(555) 345-6789',
-    icon: '📚',
+    website: 'ywcaworks.org',
+    icon: '🏠',
   },
 ]
 
@@ -40,7 +43,7 @@ export function FeaturedResources() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="mb-16 animate-fade-in-up">
           <h2 className="section-header mb-4">Featured Resources</h2>
-          <p className="section-subtitle">Community services that make a real difference</p>
+          <p className="section-subtitle">Trusted local organizations serving Redmond residents</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -74,9 +77,18 @@ export function FeaturedResources() {
                       <Phone size={16} className="text-primary flex-shrink-0" />
                       <a href={`tel:${resource.phone}`} className="text-primary hover:underline">{resource.phone}</a>
                     </div>
+                    {resource.website && (
+                      <div className="flex items-center gap-3 text-sm">
+                        <Globe size={16} className="text-primary flex-shrink-0" />
+                        <a href={`https://${resource.website}`} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{resource.website}</a>
+                      </div>
+                    )}
                   </div>
                   
-                  <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground group">
+                  <Button 
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground group"
+                    onClick={() => resource.website && window.open(`https://${resource.website}`, '_blank')}
+                  >
                     <span>Learn More</span>
                     <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>

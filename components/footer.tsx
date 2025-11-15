@@ -7,8 +7,8 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div>
-            <h3 className="font-bold text-foreground mb-3">Community Hub</h3>
-            <p className="text-sm text-foreground/60 leading-relaxed">Connecting residents with local resources that strengthen our community.</p>
+            <h3 className="font-bold text-foreground mb-3" style={{ fontFamily: 'var(--font-serif)' }}>Redmond Community Hub</h3>
+            <p className="text-sm text-foreground/60 leading-relaxed">Connecting Redmond residents with local resources and support services.</p>
           </div>
 
           {/* Navigation */}
@@ -26,9 +26,9 @@ export function Footer() {
           <div>
             <h4 className="font-semibold text-foreground mb-4 text-sm uppercase tracking-wide">Support</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="mailto:info@hub.local" className="text-foreground/60 hover:text-foreground transition-colors">Contact Us</a></li>
-              <li><Link href="/faq" className="text-foreground/60 hover:text-foreground transition-colors">FAQ</Link></li>
-              <li><Link href="/privacy" className="text-foreground/60 hover:text-foreground transition-colors">Privacy</Link></li>
+              <li><a href="mailto:info@redmondcommunityhub.org" className="text-foreground/60 hover:text-foreground transition-colors">Contact Us</a></li>
+              <li><a href="tel:+15551234567" className="text-foreground/60 hover:text-foreground transition-colors">(555) 123-4567</a></li>
+              <li><Link href="/about" className="text-foreground/60 hover:text-foreground transition-colors">About</Link></li>
             </ul>
           </div>
 
@@ -43,8 +43,8 @@ export function Footer() {
         </div>
 
         <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-foreground/50">
-          <p>&copy; 2025 Community Resource Hub. All rights reserved.</p>
-          <p>Serving our community, one resource at a time</p>
+          <p>&copy; 2025 Redmond Community Resource Hub. All rights reserved.</p>
+          <p>Serving Redmond, one resource at a time</p>
         </div>
       </div>
     </footer>
