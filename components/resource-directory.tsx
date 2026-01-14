@@ -1,101 +1,32 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Search, MapPin, Phone, Globe, X } from 'lucide-react'
+import { Search, MapPin, Phone, Globe, X, Heart } from 'lucide-react'
 import { ImagePlaceholder } from '@/components/image-placeholder'
-
-const allResources = [
-  {
-    id: 1,
-    name: 'Hopelink',
-    category: 'Food & Nutrition',
-    description: 'Food bank services, energy assistance, and emergency support for families in Redmond. Open to all community members in need.',
-    address: '15910 NE 85th St, Redmond, WA 98052',
-    phone: '(555) 123-4567',
-    website: 'hopelink.org',
-  },
-  {
-    id: 2,
-    name: 'Redmond Community Resource Center',
-    category: 'Health & Wellness',
-    description: 'Located at the Redmond Library, offering mental health assessments, substance use support, housing assistance, and employment services.',
-    address: '15990 NE 85th St, Redmond, WA 98052',
-    phone: '(555) 234-5678',
-    website: 'redmond.gov',
-  },
-  {
-    id: 3,
-    name: 'Redmond Library',
-    category: 'Education',
-    description: 'Free library services, computer access, educational programs, and community meeting spaces for all ages.',
-    address: '15990 NE 85th St, Redmond, WA 98052',
-    phone: '(555) 234-5678',
-    website: 'kcls.org',
-  },
-  {
-    id: 4,
-    name: 'YWCA Family Village Redmond',
-    category: 'Housing',
-    description: 'Permanent supportive housing with programs including Working Wardrobe, employment training, and family support services.',
-    address: '16650 NE 80th St, Redmond, WA 98052',
-    phone: '(555) 345-6789',
-    website: 'ywcaworks.org',
-  },
-  {
-    id: 5,
-    name: 'OneRedmond',
-    category: 'Employment',
-    description: 'Local chamber of commerce supporting businesses with resources, advocacy, networking events, and community development initiatives.',
-    address: '16300 NE 80th St, Redmond, WA 98052',
-    phone: '(555) 456-7890',
-    website: 'oneredmond.org',
-  },
-  {
-    id: 6,
-    name: 'City of Redmond Senior Center',
-    category: 'Senior Services',
-    description: 'Health and wellness programs, social activities, fitness classes, and support services for Redmond seniors.',
-    address: '8703 160th Ave NE, Redmond, WA 98052',
-    phone: '(555) 234-5678',
-    website: 'redmond.gov',
-  },
-  {
-    id: 7,
-    name: 'King County Bar Association Pro Bono Services',
-    category: 'Legal',
-    description: 'Free legal assistance and consultation for low-income residents, including family law, housing, and consumer protection.',
-    address: '1200 5th Ave, Seattle, WA 98101',
-    phone: '(555) 567-8901',
-    website: 'kcba.org',
-  },
-  {
-    id: 8,
-    name: 'City of Redmond Human Services',
-    category: 'Family Services',
-    description: 'Funding and support for local nonprofits offering child care, counseling, employment assistance, and medical care for families.',
-    address: '15670 NE 85th St, Redmond, WA 98052',
-    phone: '(555) 234-5678',
-    website: 'redmond.gov',
-  },
-  {
-    id: 9,
-    name: 'Indian American Community Services',
-    category: 'Community Services',
-    description: 'Inter-generational programming, community support, and resources for small businesses serving the Indian American community in Redmond.',
-    address: '15220 NE 40th St, Redmond, WA 98052',
-    phone: '(555) 678-9012',
-    website: 'iacswa.org',
-  },
-]
+import { allResources } from '@/lib/resources'
 
 const categories = ['All', ...new Set(allResources.map(r => r.category))]
 
 export function ResourceDirectory() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
+  const [likes, setLikes] = useState<Record<number, number>>({})
+
+  useEffect(() => {
+    const storedLikes = localStorage.getItem('resourceLikes')
+    if (storedLikes) {
+      setLikes(JSON.parse(storedLikes))
+    }
+  }, [])
+
+  const handleLike = (id: number) => {
+    const newLikes = { ...likes, [id]: (likes[id] || 0) + 1 }
+    setLikes(newLikes)
+    localStorage.setItem('resourceLikes', JSON.stringify(newLikes))
+  }
 
   const filteredResources = useMemo(() => {
     return allResources.filter(resource => {
@@ -201,6 +132,18 @@ export function ResourceDirectory() {
                     </a>
                   </div>
                 </div>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <Button
+                  onClick={() => handleLike(resource.id)}
+                  variant="outline"
+                  size="sm"
+                  className="flex items-center gap-2"
+                >
+                  <Heart size={16} className="text-red-500" />
+                  Like ({likes[resource.id] || 0})
+                </Button>
               </div>
             </Card>
           ))}
