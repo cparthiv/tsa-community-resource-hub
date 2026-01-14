@@ -3,6 +3,7 @@
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { MapPin, Phone, ArrowRight, Globe } from 'lucide-react'
+import { ImagePlaceholder } from '@/components/image-placeholder'
 
 const featuredResources = [
   {
@@ -13,7 +14,6 @@ const featuredResources = [
     address: '15910 NE 85th St, Redmond, WA 98052',
     phone: '(555) 123-4567',
     website: 'hopelink.org',
-    icon: '🍎',
   },
   {
     id: 2,
@@ -23,7 +23,6 @@ const featuredResources = [
     address: '15990 NE 85th St, Redmond, WA 98052',
     phone: '(555) 234-5678',
     website: 'redmond.gov',
-    icon: '💚',
   },
   {
     id: 3,
@@ -33,16 +32,20 @@ const featuredResources = [
     address: '16650 NE 80th St, Redmond, WA 98052',
     phone: '(555) 345-6789',
     website: 'ywcaworks.org',
-    icon: '🏠',
   },
 ]
 
 export function FeaturedResources() {
   return (
-    <section id="featured" className="py-20 md:py-32 bg-secondary/30">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="mb-16 animate-fade-in-up">
-          <h2 className="section-header mb-4">Featured Resources</h2>
+    <section id="featured" className="py-20 md:py-32 relative overflow-hidden">
+      {/* Background pattern */}
+      <div className="absolute inset-0 pattern-dots opacity-30"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 gradient-primary opacity-5 blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 gradient-accent opacity-5 blur-3xl"></div>
+      
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <div className="mb-16 animate-fade-in-up text-center">
+          <h2 className="section-header mb-4" style={{ fontFamily: 'var(--font-heading)' }}>Featured Resources</h2>
           <p className="section-subtitle">Trusted local organizations serving Redmond residents</p>
         </div>
 
@@ -54,19 +57,27 @@ export function FeaturedResources() {
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <Card 
-                className="overflow-hidden card-hover border border-border flex flex-col h-full"
+                className="overflow-hidden card-hover border-2 border-border/50 flex flex-col h-full bg-card/50 backdrop-blur-sm hover:border-primary/30 hover:shadow-glow transition-all duration-300"
               >
-                <div className="h-24 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center text-5xl animate-pulse-soft">
-                  {resource.icon}
+                {/* Image placeholder */}
+                <div className="relative h-48 overflow-hidden">
+                  <ImagePlaceholder 
+                    label={`Resource - ${resource.category}`}
+                    className="w-full h-full rounded-none"
+                    aspectRatio="wide"
+                  />
+                  <div className="absolute top-4 left-4 z-20">
+                    <span className="badge-gradient px-3 py-1 rounded-full text-xs font-bold text-foreground">
+                      {resource.category}
+                    </span>
+                  </div>
                 </div>
                 
-                <div className="p-8 flex flex-col flex-1">
-                  <span className="inline-block w-fit px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-xs font-semibold mb-4">
-                    {resource.category}
-                  </span>
-                  
-                  <h3 className="text-xl font-bold text-foreground mb-3">{resource.name}</h3>
-                  <p className="text-foreground/60 text-sm mb-6 leading-relaxed flex-1">{resource.description}</p>
+                <div className="p-6 md:p-8 flex flex-col flex-1">
+                  <h3 className="text-xl font-bold text-foreground mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+                    {resource.name}
+                  </h3>
+                  <p className="text-foreground/70 text-sm mb-6 leading-relaxed flex-1">{resource.description}</p>
                   
                   <div className="space-y-3 mb-8">
                     <div className="flex items-start gap-3 text-sm">
@@ -75,18 +86,18 @@ export function FeaturedResources() {
                     </div>
                     <div className="flex items-center gap-3 text-sm">
                       <Phone size={16} className="text-primary flex-shrink-0" />
-                      <a href={`tel:${resource.phone}`} className="text-primary hover:underline">{resource.phone}</a>
+                      <a href={`tel:${resource.phone}`} className="text-primary hover:underline font-medium">{resource.phone}</a>
                     </div>
                     {resource.website && (
                       <div className="flex items-center gap-3 text-sm">
                         <Globe size={16} className="text-primary flex-shrink-0" />
-                        <a href={`https://${resource.website}`} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">{resource.website}</a>
+                        <a href={`https://${resource.website}`} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">{resource.website}</a>
                       </div>
                     )}
                   </div>
                   
                   <Button 
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground group"
+                    className="w-full btn-gradient group shadow-glow"
                     onClick={() => resource.website && window.open(`https://${resource.website}`, '_blank')}
                   >
                     <span>Learn More</span>

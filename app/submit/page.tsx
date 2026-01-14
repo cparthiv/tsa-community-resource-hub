@@ -7,6 +7,7 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Check, AlertCircle } from 'lucide-react'
+import { GradientText } from '@/components/gradient-text'
 
 export default function SubmitPage() {
   const [formData, setFormData] = useState({
@@ -62,28 +63,48 @@ export default function SubmitPage() {
     <div className="min-h-screen bg-background">
       <Header />
       
-      <main className="py-16 md:py-24">
-        <div className="container mx-auto px-4 md:px-6 max-w-2xl">
-          <div className="mb-12">
-            <h1 className="section-header mb-4" style={{ fontFamily: 'var(--font-serif)' }}>Submit a Resource</h1>
-            <p className="section-subtitle">Know a great Redmond resource we're missing? Share it with us and help your neighbors.</p>
-          </div>
+      {/* Header section */}
+      <section className="relative py-16 md:py-24 overflow-hidden">
+        {/* Background pattern */}
+        <div className="absolute inset-0 pattern-grid opacity-10"></div>
+        
+        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+            Submit a <GradientText variant="primary">Resource</GradientText>
+          </h1>
+          <p className="text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto" style={{ fontFamily: 'var(--font-display)' }}>
+            Know a great Redmond resource we're missing? Share it with us and help your neighbors.
+          </p>
+        </div>
+      </section>
+      
+      <main className="py-12 md:py-16 relative">
+        {/* Background pattern */}
+        <div className="absolute inset-0 pattern-dots opacity-10"></div>
+        
+        <div className="container mx-auto px-4 md:px-6 max-w-2xl relative z-10">
 
           {submitted && (
-            <Card className="mb-8 p-6 bg-green-50 border border-green-200 flex items-start gap-4">
-              <Check className="text-green-600 flex-shrink-0 mt-1" size={24} />
+            <Card className="mb-8 p-6 bg-primary/10 border-2 border-primary/30 flex items-start gap-4 animate-fade-in-up">
+              <div className="p-2 rounded-full bg-primary/20">
+                <Check className="text-primary flex-shrink-0" size={24} />
+              </div>
               <div>
-                <h3 className="font-semibold text-green-900 mb-1">Thanks for sharing!</h3>
-                <p className="text-green-800 text-sm">We'll take a look and add it to the directory soon.</p>
+                <h3 className="font-bold text-foreground mb-1" style={{ fontFamily: 'var(--font-heading)' }}>Thanks for sharing!</h3>
+                <p className="text-foreground/70 text-sm">We'll take a look and add it to the directory soon.</p>
               </div>
             </Card>
           )}
 
           <form onSubmit={handleSubmit}>
-            <Card className="p-8 md:p-10 space-y-8">
+            <Card className="p-8 md:p-10 space-y-8 border-2 border-border/50 bg-card/50 backdrop-blur-sm shadow-lg relative overflow-hidden">
+              {/* Decorative gradient */}
+              <div className="absolute top-0 right-0 w-64 h-64 gradient-primary opacity-5 blur-3xl"></div>
+              <div className="absolute bottom-0 left-0 w-64 h-64 gradient-accent opacity-5 blur-3xl"></div>
+              <div className="relative z-10 space-y-8">
               {/* Resource Name */}
               <div>
-                <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-3">
+                <label htmlFor="name" className="block text-sm font-bold text-foreground mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
                   Resource Name *
                 </label>
                 <Input
@@ -92,7 +113,7 @@ export default function SubmitPage() {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="e.g., Hopelink"
-                  className={`border-border focus:border-primary/50 focus:ring-primary/20 ${errors.name ? 'border-red-500' : ''}`}
+                  className={`border-2 border-border rounded-xl focus:border-primary/50 focus:ring-2 focus:ring-primary/20 py-3 ${errors.name ? 'border-destructive' : ''}`}
                 />
                 {errors.name && (
                   <p className="text-red-600 text-sm mt-2 flex items-center gap-2">
@@ -103,7 +124,7 @@ export default function SubmitPage() {
 
               {/* Category */}
               <div>
-                <label htmlFor="category" className="block text-sm font-semibold text-foreground mb-3">
+                <label htmlFor="category" className="block text-sm font-bold text-foreground mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
                   Category *
                 </label>
                 <select
@@ -111,8 +132,8 @@ export default function SubmitPage() {
                   name="category"
                   value={formData.category}
                   onChange={handleChange}
-                  className={`w-full px-4 py-2 rounded-md border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 ${
-                    errors.category ? 'border-red-500' : ''
+                  className={`w-full px-4 py-3 rounded-xl border-2 border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 ${
+                    errors.category ? 'border-destructive' : ''
                   }`}
                 >
                   <option value="">Select a category</option>
@@ -135,7 +156,7 @@ export default function SubmitPage() {
 
               {/* Description */}
               <div>
-                <label htmlFor="description" className="block text-sm font-semibold text-foreground mb-3">
+                <label htmlFor="description" className="block text-sm font-bold text-foreground mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
                   Description *
                 </label>
                 <textarea
@@ -145,8 +166,8 @@ export default function SubmitPage() {
                   onChange={handleChange}
                   placeholder="What services do they offer? Who can use them?"
                   rows={5}
-                  className={`w-full px-4 py-3 rounded-md border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 resize-none ${
-                    errors.description ? 'border-red-500' : ''
+                  className={`w-full px-4 py-3 rounded-xl border-2 border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 resize-none ${
+                    errors.description ? 'border-destructive' : ''
                   }`}
                 />
                 {errors.description && (
@@ -158,7 +179,7 @@ export default function SubmitPage() {
 
               {/* Address */}
               <div>
-                <label htmlFor="address" className="block text-sm font-semibold text-foreground mb-3">
+                <label htmlFor="address" className="block text-sm font-bold text-foreground mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
                   Address
                 </label>
                 <Input
@@ -167,13 +188,13 @@ export default function SubmitPage() {
                   value={formData.address}
                   onChange={handleChange}
                   placeholder="Street address"
-                  className="border-border focus:border-primary/50 focus:ring-primary/20"
+                  className="border-2 border-border rounded-xl focus:border-primary/50 focus:ring-2 focus:ring-primary/20 py-3"
                 />
               </div>
 
               {/* Phone */}
               <div>
-                <label htmlFor="phone" className="block text-sm font-semibold text-foreground mb-3">
+                <label htmlFor="phone" className="block text-sm font-bold text-foreground mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
                   Phone Number *
                 </label>
                 <Input
@@ -182,7 +203,7 @@ export default function SubmitPage() {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="(555) 123-4567"
-                  className={`border-border focus:border-primary/50 focus:ring-primary/20 ${errors.phone ? 'border-red-500' : ''}`}
+                  className={`border-2 border-border rounded-xl focus:border-primary/50 focus:ring-2 focus:ring-primary/20 py-3 ${errors.phone ? 'border-destructive' : ''}`}
                 />
                 {errors.phone && (
                   <p className="text-red-600 text-sm mt-2 flex items-center gap-2">
@@ -193,7 +214,7 @@ export default function SubmitPage() {
 
               {/* Website */}
               <div>
-                <label htmlFor="website" className="block text-sm font-semibold text-foreground mb-3">
+                <label htmlFor="website" className="block text-sm font-bold text-foreground mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
                   Website
                 </label>
                 <Input
@@ -202,13 +223,13 @@ export default function SubmitPage() {
                   value={formData.website}
                   onChange={handleChange}
                   placeholder="www.example.org"
-                  className="border-border focus:border-primary/50 focus:ring-primary/20"
+                  className="border-2 border-border rounded-xl focus:border-primary/50 focus:ring-2 focus:ring-primary/20 py-3"
                 />
               </div>
 
               {/* Contact Name */}
               <div>
-                <label htmlFor="contact" className="block text-sm font-semibold text-foreground mb-3">
+                <label htmlFor="contact" className="block text-sm font-bold text-foreground mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
                   Your Name/Organization *
                 </label>
                 <Input
@@ -217,7 +238,7 @@ export default function SubmitPage() {
                   value={formData.contact}
                   onChange={handleChange}
                   placeholder="Your name or organization"
-                  className={`border-border focus:border-primary/50 focus:ring-primary/20 ${errors.contact ? 'border-red-500' : ''}`}
+                  className={`border-2 border-border rounded-xl focus:border-primary/50 focus:ring-2 focus:ring-primary/20 py-3 ${errors.contact ? 'border-destructive' : ''}`}
                 />
                 {errors.contact && (
                   <p className="text-red-600 text-sm mt-2 flex items-center gap-2">
@@ -226,13 +247,14 @@ export default function SubmitPage() {
                 )}
               </div>
 
-              <div className="flex gap-4 pt-6 border-t border-border">
-                <Button type="submit" size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground flex-1">
+              </div>
+              <div className="flex gap-4 pt-6 border-t-2 border-border/50">
+                <Button type="submit" size="lg" className="btn-gradient flex-1 shadow-glow text-lg py-6">
                   Submit Resource
                 </Button>
               </div>
 
-              <p className="text-xs text-foreground/50">* Required fields</p>
+              <p className="text-xs text-foreground/50 text-center">* Required fields</p>
             </Card>
           </form>
         </div>
