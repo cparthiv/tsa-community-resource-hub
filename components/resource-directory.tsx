@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Search, MapPin, Phone, Globe, X, Heart } from 'lucide-react'
-import { ImagePlaceholder } from '@/components/image-placeholder'
+import { ResourceImage } from '@/components/resource-image'
 import { allResources } from '@/lib/resources'
 
 const categories = ['All', ...new Set(allResources.map(r => r.category))]
@@ -97,10 +97,12 @@ export function ResourceDirectory() {
               key={resource.id} 
               className="card-hover overflow-hidden border-2 border-border/50 flex flex-col bg-card/50 backdrop-blur-sm hover:border-primary/30 hover:shadow-glow transition-all duration-300"
             >
-              {/* Image placeholder */}
+              {/* Resource image */}
               <div className="relative h-40 overflow-hidden">
-                <ImagePlaceholder 
-                  label={`Resource - ${resource.category}`}
+                <ResourceImage 
+                  image={resource.image}
+                  alt={`${resource.name} - ${resource.category}`}
+                  category={resource.category}
                   className="w-full h-full rounded-none"
                   aspectRatio="wide"
                 />

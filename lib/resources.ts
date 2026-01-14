@@ -8,6 +8,7 @@ export const allResources = [
     phone: '(555) 123-4567',
     website: 'hopelink.org',
     icon: '🍎',
+    image: '/images/resources/hopelink.jpg', // Optional: path to image in public folder
     likes: 0,
   },
   {
@@ -19,6 +20,7 @@ export const allResources = [
     phone: '(555) 234-5678',
     website: 'redmond.gov',
     icon: '💚',
+    image: '/images/resources/redmond-resource-center.jpg',
     likes: 0,
   },
   {
@@ -30,6 +32,7 @@ export const allResources = [
     phone: '(555) 234-5678',
     website: 'kcls.org',
     icon: '📚',
+    image: '/images/resources/redmond-library.jpg',
     likes: 0,
   },
   {
@@ -41,6 +44,7 @@ export const allResources = [
     phone: '(555) 345-6789',
     website: 'ywcaworks.org',
     icon: '🏠',
+    image: '/images/resources/ywca-family-village.jpg',
     likes: 0,
   },
   {
@@ -52,6 +56,7 @@ export const allResources = [
     phone: '(555) 456-7890',
     website: 'oneredmond.org',
     icon: '💼',
+    image: '/images/resources/oneredmond.jpg',
     likes: 0,
   },
   {
@@ -63,6 +68,7 @@ export const allResources = [
     phone: '(555) 234-5678',
     website: 'redmond.gov',
     icon: '👴',
+    image: '/images/resources/senior-center.jpg',
     likes: 0,
   },
   {
@@ -74,6 +80,7 @@ export const allResources = [
     phone: '(555) 567-8901',
     website: 'kcba.org',
     icon: '⚖️',
+    image: '/images/resources/kcba-pro-bono.jpg',
     likes: 0,
   },
   {
@@ -85,6 +92,7 @@ export const allResources = [
     phone: '(555) 234-5678',
     website: 'redmond.gov',
     icon: '👨‍👩‍👧‍👦',
+    image: '/images/resources/human-services.jpg',
     likes: 0,
   },
   {
@@ -96,6 +104,7 @@ export const allResources = [
     phone: '(555) 678-9012',
     website: 'iacswa.org',
     icon: '🌍',
+    image: '/images/resources/iacs.jpg',
     likes: 0,
   },
 ]
