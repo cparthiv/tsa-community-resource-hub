@@ -37,11 +37,28 @@ export function Header() {
             )}
             Resources
           </Link>
-          <Link 
-            href="/mission" 
+
+          {/* Map */}
+          <Link
+            href="/map"
             className={`text-sm font-semibold px-3 py-2 rounded-lg transition-all relative ${
-              isActive('/mission') 
-                ? 'text-primary' 
+              isActive('/map')
+                ? 'text-primary'
+                : 'text-foreground/70 hover:text-foreground'
+            }`}
+            style={{ fontFamily: 'var(--font-heading)' }}
+          >
+            {isActive('/map') && (
+              <span className="absolute bottom-0 left-0 right-0 h-0.5 gradient-primary rounded-full" />
+            )}
+            Locations
+          </Link>
+
+          <Link
+            href="/mission"
+            className={`text-sm font-semibold px-3 py-2 rounded-lg transition-all relative ${
+              isActive('/mission')
+                ? 'text-primary'
                 : 'text-foreground/70 hover:text-foreground'
             }`}
             style={{ fontFamily: 'var(--font-heading)' }}
@@ -79,32 +96,51 @@ export function Header() {
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
+        {/* Mobile Navigation */}
         {isOpen && (
           <div className="absolute top-18 left-0 right-0 border-b border-border bg-background/98 backdrop-blur-md md:hidden shadow-lg">
             <div className="flex flex-col gap-2 p-4">
-              <Link 
-                href="/#resources" 
+              <Link
+                href="/#resources"
                 className="text-sm font-semibold px-4 py-3 rounded-lg hover:bg-muted transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 Resources
               </Link>
-              <Link 
-                href="/mission" 
+
+              {/* ✅ Map Link (Mobile) */}
+              <Link
+                href="/map"
+                className="text-sm font-semibold px-4 py-3 rounded-lg hover:bg-muted transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                Map
+              </Link>
+
+              <Link
+                href="/mission"
                 className="text-sm font-semibold px-4 py-3 rounded-lg hover:bg-muted transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 Mission
               </Link>
-              <Link 
-                href="/about" 
+
+              <Link
+                href="/about"
                 className="text-sm font-semibold px-4 py-3 rounded-lg hover:bg-muted transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 About
               </Link>
-              <Button asChild variant="default" className="w-full btn-gradient shadow-glow mt-2">
-                <Link href="/submit" onClick={() => setIsOpen(false)}>Submit Resource</Link>
+
+              <Button
+                asChild
+                variant="default"
+                className="w-full btn-gradient shadow-glow mt-2"
+              >
+                <Link href="/submit" onClick={() => setIsOpen(false)}>
+                  Submit Resource
+                </Link>
               </Button>
             </div>
           </div>
