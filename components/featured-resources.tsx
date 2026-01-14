@@ -1,43 +1,27 @@
 'use client'
 
+import { useState, useEffect, useMemo } from 'react'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { MapPin, Phone, ArrowRight, Globe } from 'lucide-react'
-
-const featuredResources = [
-  {
-    id: 1,
-    name: 'Hopelink',
-    category: 'Food & Nutrition',
-    description: 'Food bank services, energy assistance, and emergency support for families in Redmond. Open to all community members in need.',
-    address: '15910 NE 85th St, Redmond, WA 98052',
-    phone: '(555) 123-4567',
-    website: 'hopelink.org',
-    icon: '🍎',
-  },
-  {
-    id: 2,
-    name: 'Redmond Community Resource Center',
-    category: 'Health & Wellness',
-    description: 'Located at the Redmond Library, offering mental health assessments, substance use support, housing assistance, and employment services.',
-    address: '15990 NE 85th St, Redmond, WA 98052',
-    phone: '(555) 234-5678',
-    website: 'redmond.gov',
-    icon: '💚',
-  },
-  {
-    id: 3,
-    name: 'YWCA Family Village Redmond',
-    category: 'Housing',
-    description: 'Permanent supportive housing with programs including Working Wardrobe, employment training, and family support services.',
-    address: '16650 NE 80th St, Redmond, WA 98052',
-    phone: '(555) 345-6789',
-    website: 'ywcaworks.org',
-    icon: '🏠',
-  },
-]
+import { allResources } from '@/lib/resources'
 
 export function FeaturedResources() {
+  const [likes, setLikes] = useState<Record<number, number>>({})
+
+  useEffect(() => {
+    const storedLikes = localStorage.getItem('resourceLikes')
+    if (storedLikes) {
+      setLikes(JSON.parse(storedLikes))
+    }
+  }, [])
+
+  const featuredResources = useMemo(() => {
+    return allResources
+      .map(resource => ({ ...resource, likes: likes[resource.id] || 0 }))
+      .sort((a, b) => b.likes - a.likes)
+      .slice(0, 3)
+  }, [likes])
   return (
     <section id="featured" className="py-20 md:py-32 bg-secondary/30">
       <div className="container mx-auto px-4 md:px-6">
