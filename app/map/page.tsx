@@ -1,8 +1,29 @@
-'use client'
+"use client";
 
-import { Header } from '@/components/header'
-import { ResourceMap } from '@/components/resourceMap'
-import { Footer } from '@/components/footer'
+import dynamic from "next/dynamic";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+
+// Dynamically import ResourceMap with no SSR since leaflet is client-side only
+const ResourceMap = dynamic(
+  () =>
+    import("@/components/resourceMap").then((mod) => ({
+      default: mod.ResourceMap,
+    })),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full max-w-4xl mx-auto my-8">
+        <h2 className="text-xl font-semibold mb-4 text-center text-primary">
+          Find a Community Resource Nearby
+        </h2>
+        <div className="h-[400px] w-full rounded-lg bg-muted animate-pulse flex items-center justify-center">
+          <p className="text-muted-foreground">Loading map...</p>
+        </div>
+      </div>
+    ),
+  }
+);
 
 export default function MapPage() {
   return (
@@ -20,7 +41,8 @@ export default function MapPage() {
               Community Resource Map
             </h1>
             <p className="section-subtitle">
-              Explore local nonprofits, support services, and community programs nearby.
+              Explore local nonprofits, support services, and community programs
+              nearby.
             </p>
           </div>
         </div>
@@ -51,5 +73,5 @@ export default function MapPage() {
 
       <Footer />
     </div>
-  )
+  );
 }
