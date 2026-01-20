@@ -82,6 +82,20 @@ export function Header() {
             )}
             About
           </Link>
+          <Link 
+            href="/reference" 
+            className={`text-sm font-semibold px-3 py-2 rounded-lg transition-all relative ${
+              isActive('/reference') 
+                ? 'text-primary' 
+                : 'text-foreground/70 hover:text-foreground'
+            }`}
+            style={{ fontFamily: 'var(--font-heading)' }}
+          >
+            {isActive('/reference') && (
+              <span className="absolute bottom-0 left-0 right-0 h-0.5 gradient-primary rounded-full"></span>
+            )}
+            Reference
+          </Link>
           <Button asChild size="sm" className="btn-gradient shadow-glow">
             <Link href="/submit">Submit</Link>
           </Button>
@@ -131,6 +145,14 @@ export function Header() {
                 onClick={() => setIsOpen(false)}
               >
                 About
+              </Link>
+
+              <Link
+                href="/reference"
+                className="text-sm font-semibold px-4 py-3 rounded-lg hover:bg-muted transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                Reference
               </Link>
 
               <Button

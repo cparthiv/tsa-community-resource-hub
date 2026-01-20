@@ -41,6 +41,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/reference" className="text-foreground/70 hover:text-primary transition-colors font-medium">
+                  Reference
+                </Link>
+              </li>
+              <li>
                 <Link href="/submit" className="text-foreground/70 hover:text-primary transition-colors font-medium">
                   Submit
                 </Link>

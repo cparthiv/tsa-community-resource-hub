@@ -74,7 +74,7 @@ export const allResources = [
     phone: "(555) 234-5678",
     website: "redmond.gov",
     icon: "👴",
-    // image: "/images/resources/senior-center.png", // Image not available
+    image: "/images/resources/senior_center.png",
     likes: 0,
   },
   {
@@ -89,7 +89,7 @@ export const allResources = [
     icon: "⚖️",
     image: "/images/resources/king_county_bar.png",
     likes: 0,
-  },
+  },/*
   {
     id: 8,
     name: "City of Redmond Human Services",
@@ -103,6 +103,7 @@ export const allResources = [
     image: "/images/resources/human_services.png",
     likes: 0,
   },
+  */
   {
     id: 9,
     name: "Indian American Community Services",
