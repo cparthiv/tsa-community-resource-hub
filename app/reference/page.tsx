@@ -87,11 +87,13 @@ export default function ReferencePage() {
               <p className="text-foreground/70 mb-6 leading-relaxed">
                 Signed by chapter advisor.
               </p>
-              <span
-                className="inline-flex items-center gap-2 text-foreground/40 cursor-not-allowed font-semibold transition-colors"
-                aria-disabled="true"
+              <Link
+                href="/copyright_checklist.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-semibold transition-colors underline underline-offset-4"
               >
-                Copyright Checklist
+                View Copyright Checklist
                 <svg
                   className="w-4 h-4"
                   fill="none"
@@ -106,7 +108,7 @@ export default function ReferencePage() {
                     d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                   />
                 </svg>
-              </span>
+              </Link>
             </Card>
 
             {/* Work Log Section */}
