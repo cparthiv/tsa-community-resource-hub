@@ -10,22 +10,60 @@ import { allResources } from '@/lib/resources'
 
 const categories = ['All', ...new Set(allResources.map(r => r.category))]
 
+
+const getUserId = () => {
+  let userId = localStorage.getItem('userId')
+  if (!userId) {
+    userId = Math.random().toString(36).substr(2, 9)
+    localStorage.setItem('userId', userId)
+  }
+  return userId
+}
+
 export function ResourceDirectory() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [likes, setLikes] = useState<Record<number, number>>({})
+  const [myLikes, setMyLikes] = useState<Set<number>>(new Set())
 
   useEffect(() => {
-    const storedLikes = localStorage.getItem('resourceLikes')
-    if (storedLikes) {
-      setLikes(JSON.parse(storedLikes))
+    const userId = getUserId()
+    
+    fetch('/api/likes')
+      .then(res => res.json())
+      .then(counts => setLikes(counts))
+      .catch(err => console.error('Failed to fetch likes:', err))
+
+    
+    const storedMyLikes = localStorage.getItem('myLikes')
+    if (storedMyLikes) {
+      setMyLikes(new Set(JSON.parse(storedMyLikes)))
     }
   }, [])
 
-  const handleLike = (id: number) => {
-    const newLikes = { ...likes, [id]: (likes[id] || 0) + 1 }
-    setLikes(newLikes)
-    localStorage.setItem('resourceLikes', JSON.stringify(newLikes))
+  const handleLike = async (id: number) => {
+    const userId = getUserId()
+    try {
+      const response = await fetch('/api/likes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ resourceId: id, userId })
+      })
+      const { liked, count } = await response.json()
+
+      setLikes(prev => ({ ...prev, [id]: count }))
+
+      const newMyLikes = new Set(myLikes)
+      if (liked) {
+        newMyLikes.add(id)
+      } else {
+        newMyLikes.delete(id)
+      }
+      setMyLikes(newMyLikes)
+      localStorage.setItem('myLikes', JSON.stringify([...newMyLikes]))
+    } catch (err) {
+      console.error('Failed to toggle like:', err)
+    }
   }
 
   const filteredResources = useMemo(() => {
@@ -143,8 +181,8 @@ export function ResourceDirectory() {
                   size="sm"
                   className="flex items-center gap-2"
                 >
-                  <Heart size={16} className="text-red-500" />
-                  Like ({likes[resource.id] || 0})
+                  <Heart size={16} className={myLikes.has(resource.id) ? "text-red-500 fill-red-500" : "text-red-500"} />
+                  {myLikes.has(resource.id) ? 'Unlike' : 'Like'} ({likes[resource.id] || 0})
                 </Button>
               </div>
             </Card>
