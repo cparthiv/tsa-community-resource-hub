@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, Merriweather } from 'next/font/google'
+import { Inter, Poppins, DM_Sans, Playfair_Display } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
@@ -9,10 +9,24 @@ const inter = Inter({
   display: 'swap',
 });
 
-const merriweather = Merriweather({ 
+const poppins = Poppins({ 
   subsets: ["latin"],
-  weight: ['300', '400', '700', '900'],
-  variable: '--font-merriweather',
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-poppins',
+  display: 'swap',
+});
+
+const dmSans = DM_Sans({ 
+  subsets: ["latin"],
+  weight: ['400', '500', '700'],
+  variable: '--font-dm-sans',
+  display: 'swap',
+});
+
+const playfairDisplay = Playfair_Display({ 
+  subsets: ["latin"],
+  weight: ['400', '700', '900'],
+  variable: '--font-playfair',
   display: 'swap',
 });
 
@@ -40,7 +54,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${merriweather.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${poppins.variable} ${dmSans.variable} ${playfairDisplay.variable} font-sans antialiased`}>
         {children}
         <Analytics />
       </body>

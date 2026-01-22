@@ -2,24 +2,51 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import { GradientText } from '@/components/gradient-text'
+import { ImagePlaceholder } from '@/components/image-placeholder'
 
 export function SubmissionCTA() {
   return (
-    <section id="submit" className="py-20 md:py-32 bg-secondary/20">
-      <div className="container mx-auto px-4 md:px-6">
-        <Card className="p-12 md:p-16 border border-border text-center max-w-2xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6" style={{ fontFamily: 'var(--font-serif)' }}>Know a Resource?</h2>
-          <p className="text-lg text-foreground/60 mb-10 leading-relaxed">
-            Know a great resource we're missing? Share it with us and help your neighbors find the support they need.
-          </p>
-          
-          <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground group">
-            <Link href="/submit" className="flex items-center gap-2">
-              Submit a Resource
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </Button>
-        </Card>
+    <section id="submit" className="py-20 md:py-40 relative overflow-hidden">
+      {/* Background pattern and gradients */}
+      <div className="absolute inset-0 pattern-dots opacity-20"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 gradient-primary opacity-5 blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 gradient-accent opacity-5 blur-3xl"></div>
+      
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="relative">
+              <ImagePlaceholder 
+                label="Submit CTA - Community contribution" 
+                className="w-full rounded-2xl"
+                aspectRatio="square"
+              />
+            </div>
+            
+            <Card className="p-8 md:p-12 border-2 border-border/50 bg-card/80 backdrop-blur-md shadow-glow relative overflow-hidden">
+              {/* Decorative gradient overlay */}
+              <div className="absolute top-0 right-0 w-48 h-48 gradient-primary opacity-5 blur-3xl"></div>
+              <div className="absolute bottom-0 left-0 w-48 h-48 gradient-accent opacity-5 blur-3xl"></div>
+              
+              <div className="relative z-10">
+                <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight" style={{ fontFamily: 'var(--font-heading)' }}>
+                  Know a <GradientText variant="primary">Resource</GradientText>?
+                </h2>
+                <p className="text-lg md:text-xl text-foreground/70 mb-8 leading-relaxed" style={{ fontFamily: 'var(--font-display)' }}>
+                  Know a great resource we're missing? Share it with us and help your neighbors find the support they need.
+                </p>
+                
+                <Button asChild size="lg" className="btn-gradient text-lg px-8 py-6 shadow-glow group w-full md:w-auto">
+                  <Link href="/submit" className="flex items-center gap-2 justify-center">
+                    Submit a Resource
+                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+              </div>
+            </Card>
+          </div>
+        </div>
       </div>
     </section>
   )

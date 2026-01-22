@@ -4,6 +4,8 @@ import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 import { Card } from '@/components/ui/card'
 import { Heart, Users, Lightbulb, Target } from 'lucide-react'
+import { ImagePlaceholder } from '@/components/image-placeholder'
+import { GradientText } from '@/components/gradient-text'
 
 const missionValues = [
   {
@@ -37,29 +39,46 @@ export default function MissionPage() {
       <section className="pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-b from-primary/5 to-background">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-3xl mx-auto text-center animate-fade-in-up">
-            <h1 className="section-header mb-6">Our Mission</h1>
-            <p className="text-xl text-foreground/70 leading-relaxed mb-8">
+            <h1 className="section-header mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+              Our <GradientText variant="primary">Mission</GradientText>
+            </h1>
+            <p className="text-xl text-foreground/70 leading-relaxed mb-8" style={{ fontFamily: 'var(--font-display)' }}>
               We're here to make finding help in Redmond simple. No runaround, no confusion. Just straightforward connections between people and the services they need.
             </p>
-            <div className="h-1 w-20 bg-primary mx-auto animate-scale-in"></div>
+            <div className="h-1 w-20 gradient-primary mx-auto animate-scale-in"></div>
           </div>
         </div>
       </section>
 
       {/* Story Section */}
       <section className="py-20 md:py-32">
-        <div className="container mx-auto px-4 md:px-6 max-w-3xl">
-          <div className="mb-12 animate-fade-in-up">
-            <h2 className="section-header mb-4">How We Started</h2>
-            <p className="text-lg text-foreground/70 leading-relaxed mb-6">
-              It started with a friend who needed help finding food assistance. They spent hours searching online, calling different numbers, and getting bounced around between organizations. By the time they found what they needed, they were exhausted and frustrated.
-            </p>
-            <p className="text-lg text-foreground/70 leading-relaxed mb-6">
-              That got us thinking. Redmond has amazing resources. Food banks, housing help, job training, health services. But finding them? That's the hard part. Information is scattered across websites, flyers, and word-of-mouth. There had to be a better way.
-            </p>
-            <p className="text-lg text-foreground/70 leading-relaxed">
-              So we started building a list. We reached out to local nonprofits, visited community centers, and talked to people who actually use these services. We wanted to know what works, what doesn't, and what's missing. In 2024, we launched this hub with 50 verified Redmond resources. Now we're growing every day, thanks to neighbors who share new resources with us.
-            </p>
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
+              <div className="animate-fade-in-up">
+                <h2 className="section-header mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+                  How We <GradientText variant="primary">Started</GradientText>
+                </h2>
+                <div className="space-y-6">
+                  <p className="text-lg text-foreground/70 leading-relaxed">
+                    It started with a friend who needed help finding food assistance. They spent hours searching online, calling different numbers, and getting bounced around between organizations. By the time they found what they needed, they were exhausted and frustrated.
+                  </p>
+                  <p className="text-lg text-foreground/70 leading-relaxed">
+                    That got us thinking. Redmond has amazing resources. Food banks, housing help, job training, health services. But finding them? That's the hard part. Information is scattered across websites, flyers, and word-of-mouth. There had to be a better way.
+                  </p>
+                  <p className="text-lg text-foreground/70 leading-relaxed">
+                    So we started building a list. We reached out to local nonprofits, visited community centers, and talked to people who actually use these services. We wanted to know what works, what doesn't, and what's missing. In 2024, we launched this hub with 50 verified Redmond resources. Now we're growing every day, thanks to neighbors who share new resources with us.
+                  </p>
+                </div>
+              </div>
+              <div className="relative animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+                <ImagePlaceholder 
+                  label="Mission - Community building story" 
+                  className="w-full rounded-2xl"
+                  aspectRatio="square"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -68,32 +87,41 @@ export default function MissionPage() {
       <section className="py-20 md:py-32 bg-secondary/30">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-            <div className="animate-slide-in-left">
-              <h2 className="section-header mb-6">Why This Matters</h2>
-              <p className="text-foreground/70 leading-relaxed mb-4">
-                Finding help shouldn't be hard. But too often, people in Redmond don't know where to look. Information is scattered across websites, flyers, and word-of-mouth. By the time someone finds what they need, they've already wasted hours searching.
-              </p>
-              <p className="text-foreground/70 leading-relaxed mb-4">
-                We built this hub to fix that. Everything in one place: food banks, housing help, job training, health services. No more hunting through multiple sites or calling around town.
-              </p>
-              <p className="text-foreground/70 leading-relaxed">
-                Our goal? Be the first place Redmond residents check when they need help. Simple as that.
-              </p>
+            <div className="relative animate-slide-in-left order-2 md:order-1">
+              <ImagePlaceholder 
+                label="Mission - Why this matters illustration" 
+                className="w-full rounded-2xl"
+                aspectRatio="square"
+              />
             </div>
-            <div className="animate-slide-in-right">
-              <div className="bg-primary/10 rounded-lg p-8 md:p-12 border border-primary/20">
-                <div className="space-y-6">
+            <div className="animate-slide-in-right order-1 md:order-2">
+              <h2 className="section-header mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+                Why This <GradientText variant="accent">Matters</GradientText>
+              </h2>
+              <div className="space-y-4 mb-8">
+                <p className="text-foreground/70 leading-relaxed text-lg">
+                  Finding help shouldn't be hard. But too often, people in Redmond don't know where to look. Information is scattered across websites, flyers, and word-of-mouth. By the time someone finds what they need, they've already wasted hours searching.
+                </p>
+                <p className="text-foreground/70 leading-relaxed text-lg">
+                  We built this hub to fix that. Everything in one place: food banks, housing help, job training, health services. No more hunting through multiple sites or calling around town.
+                </p>
+                <p className="text-foreground/70 leading-relaxed text-lg">
+                  Our goal? Be the first place Redmond residents check when they need help. Simple as that.
+                </p>
+              </div>
+              <div className="bg-primary/10 rounded-lg p-8 border-2 border-primary/20">
+                <div className="grid grid-cols-3 gap-6 text-center">
                   <div>
-                    <p className="text-3xl md:text-4xl font-bold text-primary mb-2">50+</p>
-                    <p className="text-foreground/70">Redmond Resources Listed</p>
+                    <p className="text-3xl md:text-4xl font-bold gradient-text mb-2">50+</p>
+                    <p className="text-foreground/70 text-sm">Resources Listed</p>
                   </div>
                   <div>
-                    <p className="text-3xl md:text-4xl font-bold text-primary mb-2">Growing</p>
-                    <p className="text-foreground/70">Every Day</p>
+                    <p className="text-3xl md:text-4xl font-bold gradient-text mb-2">Growing</p>
+                    <p className="text-foreground/70 text-sm">Every Day</p>
                   </div>
                   <div>
-                    <p className="text-3xl md:text-4xl font-bold text-primary mb-2">24/7</p>
-                    <p className="text-foreground/70">Available Online</p>
+                    <p className="text-3xl md:text-4xl font-bold gradient-text mb-2">24/7</p>
+                    <p className="text-foreground/70 text-sm">Available</p>
                   </div>
                 </div>
               </div>
@@ -105,8 +133,10 @@ export default function MissionPage() {
       {/* Core Values */}
       <section className="py-20 md:py-32">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="mb-16 animate-fade-in-up">
-            <h2 className="section-header mb-4">What Drives Us</h2>
+          <div className="mb-16 animate-fade-in-up text-center">
+            <h2 className="section-header mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
+              What <GradientText variant="primary">Drives</GradientText> Us
+            </h2>
             <p className="section-subtitle">The values that guide everything we do</p>
           </div>
 
@@ -135,7 +165,9 @@ export default function MissionPage() {
       <section className="py-20 md:py-32 bg-secondary/30">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <div className="animate-fade-in-up">
-            <h2 className="section-header mb-6">What's Next</h2>
+            <h2 className="section-header mb-6" style={{ fontFamily: 'var(--font-heading)' }}>
+              What's <GradientText variant="accent">Next</GradientText>
+            </h2>
             <p className="text-lg text-foreground/70 leading-relaxed mb-6">
               We're keeping it simple. Our focus is making sure every Redmond resident can find help when they need it. Here's what we're working on:
             </p>
