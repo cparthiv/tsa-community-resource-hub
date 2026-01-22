@@ -12,19 +12,66 @@ const categories = ['All', ...new Set(allResources.map(r => r.category))]
 export function ResourceDirectory() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('All')
-  const [likes, setLikes] = useState<Record<number, number>>({})
+  const [likeCounts, setLikeCounts] = useState<Record<string, number>>({})
+  const [userLikes, setUserLikes] = useState<Set<number>>(new Set())
+  const [userId, setUserId] = useState<string>('')
 
   useEffect(() => {
-    const storedLikes = localStorage.getItem('resourceLikes')
-    if (storedLikes) {
-      setLikes(JSON.parse(storedLikes))
+    // Generate or get user ID
+    let id = localStorage.getItem('userId')
+    if (!id) {
+      id = Math.random().toString(36).substring(2) + Date.now().toString(36)
+      localStorage.setItem('userId', id)
     }
+    setUserId(id)
+
+    // Fetch likes from API
+    fetchLikes()
   }, [])
 
-  const handleLike = (id: number) => {
-    const newLikes = { ...likes, [id]: (likes[id] || 0) + 1 }
-    setLikes(newLikes)
-    localStorage.setItem('resourceLikes', JSON.stringify(newLikes))
+  const fetchLikes = async () => {
+    try {
+      const userId = localStorage.getItem('userId')
+      const response = await fetch(`/api/likes?userId=${userId}`)
+      const data = await response.json()
+      setLikeCounts(data.counts)
+
+      // Set user likes from API
+      setUserLikes(new Set(data.userLikes.map((id: string) => parseInt(id))))
+    } catch (error) {
+      console.error('Failed to fetch likes:', error)
+    }
+  }
+
+  const handleLike = async (id: number) => {
+    if (!userId) return
+
+    try {
+      const response = await fetch('/api/likes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ resourceId: id, userId }),
+      })
+
+      const result = await response.json()
+
+      // Update local state
+      setLikeCounts(prev => ({ ...prev, [id]: result.count }))
+
+      if (result.liked) {
+        setUserLikes(prev => new Set([...prev, id]))
+      } else {
+        setUserLikes(prev => {
+          const newSet = new Set(prev)
+          newSet.delete(id)
+          return newSet
+        })
+      }
+    } catch (error) {
+      console.error('Failed to toggle like:', error)
+    }
   }
 
   const filteredResources = useMemo(() => {
@@ -117,8 +164,8 @@ export function ResourceDirectory() {
                   size="sm"
                   className="flex items-center gap-2"
                 >
-                  <Heart size={16} className="text-red-500" />
-                  Like ({likes[resource.id] || 0})
+                  <Heart size={16} className={userLikes.has(resource.id) ? "text-red-500 fill-red-500" : "text-red-500"} />
+                  {userLikes.has(resource.id) ? 'Unlike' : 'Like'} ({likeCounts[resource.id] || 0})
                 </Button>
               </div>
             </Card>
