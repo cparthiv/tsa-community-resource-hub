@@ -298,8 +298,72 @@ html {
 
 /* Badge gradients */
 .badge-gradient {
-  background: linear-gradient(135deg, oklch(0.45 0.12 240 / 0.1), oklch(0.5 0.15 200 / 0.1));
-  border: 1px solid oklch(0.45 0.12 240 / 0.2);
+  background: linear-gradient(135deg, oklch(0.45 0.12 240 / 0.15), oklch(0.5 0.15 200 / 0.15));
+}
+
+/* Accessibility: Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.focus\:not-sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Focus visible styles for better keyboard navigation */
+:focus-visible {
+  outline: 2px solid oklch(0.45 0.12 240);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid oklch(0.45 0.12 240);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  :root {
+    --foreground: oklch(0.15 0.02 240);
+    --border: oklch(0.7 0.01 240);
+  }
+  
+  .dark {
+    --foreground: oklch(0.98 0.01 240);
+    --border: oklch(0.5 0.02 240);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Dark mode adjustments */

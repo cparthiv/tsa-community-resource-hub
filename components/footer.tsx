@@ -5,9 +5,9 @@ export function Footer() {
   return (
     <footer className="relative border-t-2 border-border/50 bg-background py-16 md:py-20 overflow-hidden">
       {/* Background pattern */}
-      <div className="absolute inset-0 pattern-grid opacity-10"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 gradient-primary opacity-5 blur-3xl"></div>
-      <div className="absolute top-0 right-0 w-96 h-96 gradient-accent opacity-5 blur-3xl"></div>
+      <div className="absolute inset-0 pattern-grid opacity-10" aria-hidden="true"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 gradient-primary opacity-5 blur-3xl" aria-hidden="true"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 gradient-accent opacity-5 blur-3xl" aria-hidden="true"></div>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
@@ -20,38 +20,53 @@ export function Footer() {
           </div>
 
           {/* Navigation */}
-          <div>
+          <nav aria-label="Footer navigation">
             <h4 className="font-bold text-foreground mb-4 text-sm uppercase tracking-wide" style={{ fontFamily: 'var(--font-heading)' }}>
               Navigation
             </h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link href="/" className="text-foreground/70 hover:text-primary transition-colors font-medium">
+                <Link 
+                  href="/" 
+                  className="text-foreground/70 hover:text-primary transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-primary rounded"
+                >
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="#resources" className="text-foreground/70 hover:text-primary transition-colors font-medium">
+                <Link 
+                  href="#resources" 
+                  className="text-foreground/70 hover:text-primary transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-primary rounded"
+                >
                   Resources
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-foreground/70 hover:text-primary transition-colors font-medium">
+                <Link 
+                  href="/about" 
+                  className="text-foreground/70 hover:text-primary transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-primary rounded"
+                >
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/reference" className="text-foreground/70 hover:text-primary transition-colors font-medium">
+                <Link 
+                  href="/reference" 
+                  className="text-foreground/70 hover:text-primary transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-primary rounded"
+                >
                   Reference
                 </Link>
               </li>
               <li>
-                <Link href="/submit" className="text-foreground/70 hover:text-primary transition-colors font-medium">
+                <Link 
+                  href="/submit" 
+                  className="text-foreground/70 hover:text-primary transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-primary rounded"
+                >
                   Submit
                 </Link>
               </li>
             </ul>
-          </div>
+          </nav>
 
           {/* Support */}
           <div>
@@ -60,17 +75,28 @@ export function Footer() {
             </h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <a href="mailto:info@redmondcommunityhub.org" className="text-foreground/70 hover:text-primary transition-colors font-medium">
+                <a 
+                  href="mailto:info@redmondcommunityhub.org" 
+                  className="text-foreground/70 hover:text-primary transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-primary rounded"
+                  aria-label="Email us at info@redmondcommunityhub.org"
+                >
                   Contact Us
                 </a>
               </li>
               <li>
-                <a href="tel:+15551234567" className="text-foreground/70 hover:text-primary transition-colors font-medium">
+                <a 
+                  href="tel:+15551234567" 
+                  className="text-foreground/70 hover:text-primary transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-primary rounded"
+                  aria-label="Call us at 555-123-4567"
+                >
                   (555) 123-4567
                 </a>
               </li>
               <li>
-                <Link href="/about" className="text-foreground/70 hover:text-primary transition-colors font-medium">
+                <Link 
+                  href="/about" 
+                  className="text-foreground/70 hover:text-primary transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-primary rounded"
+                >
                   About
                 </Link>
               </li>
@@ -78,23 +104,29 @@ export function Footer() {
           </div>
 
           {/* Legal */}
-          <div>
+          <nav aria-label="Legal and compliance">
             <h4 className="font-bold text-foreground mb-4 text-sm uppercase tracking-wide" style={{ fontFamily: 'var(--font-heading)' }}>
               Legal
             </h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link href="/terms" className="text-foreground/70 hover:text-primary transition-colors font-medium">
+                <Link 
+                  href="/terms" 
+                  className="text-foreground/70 hover:text-primary transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-primary rounded"
+                >
                   Terms
                 </Link>
               </li>
               <li>
-                <Link href="/accessibility" className="text-foreground/70 hover:text-primary transition-colors font-medium">
+                <Link 
+                  href="/accessibility" 
+                  className="text-foreground/70 hover:text-primary transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-primary rounded"
+                >
                   Accessibility
                 </Link>
               </li>
             </ul>
-          </div>
+          </nav>
         </div>
 
         <div className="border-t-2 border-border/50 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">

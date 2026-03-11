@@ -9,10 +9,12 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <HeroSection />
-      <FeaturedResources />
-      <ResourceDirectory />
-      <SubmissionCTA />
+      <main id="main-content" className="flex-1">
+        <HeroSection />
+        <FeaturedResources />
+        <ResourceDirectory />
+        <SubmissionCTA />
+      </main>
       <Footer />
     </div>
   )

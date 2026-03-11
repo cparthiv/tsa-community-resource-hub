@@ -7,11 +7,11 @@ export function HeroSection() {
   return (
     <section className="relative w-full py-24 md:py-40 overflow-hidden">
       {/* Background pattern */}
-      <div className="absolute inset-0 pattern-grid opacity-10"></div>
+      <div className="absolute inset-0 pattern-grid opacity-10" aria-hidden="true"></div>
       
       {/* Decorative elements */}
-      <div className="absolute top-20 right-10 w-72 h-72 gradient-primary opacity-10 blur-3xl rounded-full"></div>
-      <div className="absolute bottom-20 left-10 w-96 h-96 gradient-accent opacity-10 blur-3xl rounded-full"></div>
+      <div className="absolute top-20 right-10 w-72 h-72 gradient-primary opacity-10 blur-3xl rounded-full" aria-hidden="true"></div>
+      <div className="absolute bottom-20 left-10 w-96 h-96 gradient-accent opacity-10 blur-3xl rounded-full" aria-hidden="true"></div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center animate-fade-in-up">
@@ -30,13 +30,22 @@ export function HeroSection() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="btn-gradient text-lg px-8 py-6 shadow-glow">
+            <Button 
+              asChild 
+              size="lg" 
+              className="btn-gradient text-lg px-8 py-6 shadow-glow focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            >
               <Link href="#resources" className="flex items-center gap-2">
-                <Search size={20} />
+                <Search size={20} aria-hidden="true" />
                 Explore Resources
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="text-lg px-8 py-6 border-2 border-primary/30 hover:border-primary/50 hover:bg-primary/5">
+            <Button 
+              asChild 
+              variant="outline" 
+              size="lg" 
+              className="text-lg px-8 py-6 border-2 border-primary/30 hover:border-primary/50 hover:bg-primary/5 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            >
               <Link href="/about">Learn More</Link>
             </Button>
           </div>

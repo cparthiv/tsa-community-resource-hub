@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { MapPin, Phone, ArrowRight, Globe } from 'lucide-react'
+import { MapPin, Phone, ArrowRight, Globe, Trophy } from 'lucide-react'
 import { ResourceImage } from '@/components/resource-image'
 import { allResources } from '@/lib/resources'
 
@@ -11,10 +11,10 @@ export function FeaturedResources() {
   const [likes, setLikes] = useState<Record<number, number>>({})
 
   useEffect(() => {
-    const storedLikes = localStorage.getItem('resourceLikes')
-    if (storedLikes) {
-      setLikes(JSON.parse(storedLikes))
-    }
+    fetch('/api/likes')
+      .then(res => res.json())
+      .then(counts => setLikes(counts))
+      .catch(err => console.error('Failed to fetch likes:', err))
   }, [])
 
   const featuredResources = useMemo(() => {
@@ -23,23 +23,34 @@ export function FeaturedResources() {
       .sort((a, b) => b.likes - a.likes)
       .slice(0, 3)
   }, [likes])
+
+  const getMedalEmoji = (index: number) => {
+    const medals = ['🥇', '🥈', '🥉']
+    return medals[index] || ''
+  }
+  
   return (
-    <section id="featured" className="py-20 md:py-32 relative overflow-hidden">
+    <section id="featured" className="py-20 md:py-32 relative overflow-hidden" aria-labelledby="featured-heading">
       {/* Background pattern */}
-      <div className="absolute inset-0 pattern-dots opacity-30"></div>
-      <div className="absolute top-0 right-0 w-96 h-96 gradient-primary opacity-5 blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 gradient-accent opacity-5 blur-3xl"></div>
+      <div className="absolute inset-0 pattern-dots opacity-30" aria-hidden="true"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 gradient-primary opacity-5 blur-3xl" aria-hidden="true"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 gradient-accent opacity-5 blur-3xl" aria-hidden="true"></div>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="mb-16 animate-fade-in-up text-center">
-          <h2 className="section-header mb-4" style={{ fontFamily: 'var(--font-heading)' }}>Featured Resources</h2>
-          <p className="section-subtitle">Trusted local organizations serving Redmond residents</p>
+          <div className="flex items-center justify-center gap-3 mb-2">
+            <Trophy size={28} className="text-accent" aria-hidden="true" />
+            <h2 id="featured-heading" className="section-header" style={{ fontFamily: 'var(--font-heading)' }}>Top 3 Resources</h2>
+            <Trophy size={28} className="text-accent" aria-hidden="true" />
+          </div>
+          <p className="section-subtitle">Community favorites based on your votes</p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8" role="list">
           {featuredResources.map((resource, index) => (
-            <div
+            <article
               key={resource.id}
+              role="listitem"
               className="animate-fade-in-up"
               style={{ animationDelay: `${index * 100}ms` }}
             >
@@ -55,10 +66,16 @@ export function FeaturedResources() {
                     className="w-full h-full rounded-none"
                     aspectRatio="wide"
                   />
-                  <div className="absolute top-4 left-4 z-20">
+                  <div className="absolute top-4 left-4 z-20 flex gap-2">
+                    <span className="text-2xl">{getMedalEmoji(index)}</span>
                     <span className="badge-gradient px-3 py-1 rounded-full text-xs font-bold text-foreground">
                       {resource.category}
                     </span>
+                  </div>
+                  <div className="absolute top-4 right-4 z-20 bg-accent/90 backdrop-blur-sm px-3 py-1 rounded-full">
+                    <p className="text-sm font-bold text-foreground">
+                      ❤️ {resource.likes}
+                    </p>
                   </div>
                 </div>
                 
@@ -70,32 +87,47 @@ export function FeaturedResources() {
                   
                   <div className="space-y-3 mb-8">
                     <div className="flex items-start gap-3 text-sm">
-                      <MapPin size={16} className="text-primary mt-0.5 flex-shrink-0" />
-                      <span className="text-foreground/70">{resource.address}</span>
+                      <MapPin size={16} className="text-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
+                      <address className="text-foreground/70 not-italic">{resource.address}</address>
                     </div>
                     <div className="flex items-center gap-3 text-sm">
-                      <Phone size={16} className="text-primary flex-shrink-0" />
-                      <a href={`tel:${resource.phone}`} className="text-primary hover:underline font-medium">{resource.phone}</a>
+                      <Phone size={16} className="text-primary flex-shrink-0" aria-hidden="true" />
+                      <a 
+                        href={`tel:${resource.phone}`} 
+                        className="text-primary hover:underline font-medium focus:outline-none focus:ring-2 focus:ring-primary rounded"
+                        aria-label={`Call ${resource.name} at ${resource.phone}`}
+                      >
+                        {resource.phone}
+                      </a>
                     </div>
                     {resource.website && (
                       <div className="flex items-center gap-3 text-sm">
-                        <Globe size={16} className="text-primary flex-shrink-0" />
-                        <a href={`https://${resource.website}`} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">{resource.website}</a>
+                        <Globe size={16} className="text-primary flex-shrink-0" aria-hidden="true" />
+                        <a 
+                          href={`https://${resource.website}`} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="text-primary hover:underline font-medium focus:outline-none focus:ring-2 focus:ring-primary rounded"
+                          aria-label={`Visit ${resource.name} website`}
+                        >
+                          {resource.website}
+                        </a>
                       </div>
                     )}
                   </div>
                   
                   <Button 
-                    className="w-full btn-gradient group shadow-glow"
+                    className="w-full btn-gradient group shadow-glow focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                     onClick={() => resource.website && window.open(`https://${resource.website}`, '_blank')}
+                    aria-label={`Learn more about ${resource.name}`}
                   >
                     <span>Learn More</span>
-                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                   </Button>
                 </div>
               </Card>
-            </div>
-          ))}
+            </article>
+            ))}
         </div>
       </div>
     </section>

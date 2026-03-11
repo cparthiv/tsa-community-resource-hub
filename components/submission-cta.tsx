@@ -1,9 +1,8 @@
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Share2, Users, Lightbulb, Heart } from 'lucide-react'
 import Link from 'next/link'
 import { GradientText } from '@/components/gradient-text'
-import { ImagePlaceholder } from '@/components/image-placeholder'
 
 export function SubmissionCTA() {
   return (
@@ -17,11 +16,43 @@ export function SubmissionCTA() {
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative">
-              <ImagePlaceholder 
-                label="Submit CTA - Community contribution" 
-                className="w-full rounded-2xl"
-                aspectRatio="square"
-              />
+              {/* Visual representation of community contribution */}
+              <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 via-accent/20 to-primary/10 flex items-center justify-center p-8 relative overflow-hidden">
+                {/* Pattern overlay */}
+                <div className="absolute inset-0 pattern-dots opacity-30"></div>
+                
+                {/* Decorative gradients */}
+                <div className="absolute top-0 right-0 w-32 h-32 gradient-primary opacity-10 blur-3xl"></div>
+                <div className="absolute bottom-0 left-0 w-32 h-32 gradient-accent opacity-10 blur-3xl"></div>
+                
+                {/* Icon grid */}
+                <div className="relative z-10 grid grid-cols-2 gap-6 md:gap-8">
+                  <div className="flex flex-col items-center justify-center">
+                    <div className="p-4 md:p-6 bg-primary/10 rounded-lg mb-3 border border-primary/20">
+                      <Share2 size={32} className="text-primary" />
+                    </div>
+                    <p className="text-xs md:text-sm font-medium text-foreground text-center">Share</p>
+                  </div>
+                  <div className="flex flex-col items-center justify-center">
+                    <div className="p-4 md:p-6 bg-accent/10 rounded-lg mb-3 border border-accent/20">
+                      <Users size={32} className="text-accent" />
+                    </div>
+                    <p className="text-xs md:text-sm font-medium text-foreground text-center">Connect</p>
+                  </div>
+                  <div className="flex flex-col items-center justify-center">
+                    <div className="p-4 md:p-6 bg-primary/10 rounded-lg mb-3 border border-primary/20">
+                      <Lightbulb size={32} className="text-primary" />
+                    </div>
+                    <p className="text-xs md:text-sm font-medium text-foreground text-center">Discover</p>
+                  </div>
+                  <div className="flex flex-col items-center justify-center">
+                    <div className="p-4 md:p-6 bg-accent/10 rounded-lg mb-3 border border-accent/20">
+                      <Heart size={32} className="text-accent" />
+                    </div>
+                    <p className="text-xs md:text-sm font-medium text-foreground text-center">Support</p>
+                  </div>
+                </div>
+              </div>
             </div>
             
             <Card className="p-8 md:p-12 border-2 border-border/50 bg-card/80 backdrop-blur-md shadow-glow relative overflow-hidden">
