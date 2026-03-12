@@ -184,7 +184,7 @@ export function Header() {
                 </Link>
               </Button>
             </div>
-          </div>
+          </nav>
         )}
       </nav>
     </header>
