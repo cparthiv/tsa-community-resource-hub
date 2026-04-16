@@ -46,7 +46,16 @@ export default function MissionPage() {
             <p className="text-xl text-foreground/70 leading-relaxed mb-8" style={{ fontFamily: 'var(--font-display)' }}>
               We're here to make finding help in Redmond simple. No runaround, no confusion. Just straightforward connections between people and the services they need.
             </p>
-            <div className="h-1 w-20 gradient-primary mx-auto animate-scale-in"></div>
+            <div className="h-1 w-20 gradient-primary mx-auto animate-scale-in mb-12"></div>
+            <div className="relative w-full max-w-2xl mx-auto aspect-video overflow-hidden rounded-2xl shadow-lg">
+              <Image
+                src="/images/mission-hero.png"
+                alt="A person receiving help at a community service desk"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 672px"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -121,7 +130,7 @@ export default function MissionPage() {
                     <p className="text-foreground/70 text-sm">Resources Listed</p>
                   </div>
                   <div>
-                    <p className="text-3xl md:text-4xl font-bold gradient-text mb-2">Growing</p>
+                    <p className="text-3xl md:text-4xl font-bold gradient-text mb-2">Grows</p>
                     <p className="text-foreground/70 text-sm">Every Day</p>
                   </div>
                   <div>
