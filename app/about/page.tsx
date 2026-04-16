@@ -1,8 +1,8 @@
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 import { Card } from '@/components/ui/card'
-import { ImagePlaceholder } from '@/components/image-placeholder'
 import { GradientText } from '@/components/gradient-text'
+import Image from 'next/image'
 
 export default function AboutPage() {
   return (
@@ -50,11 +50,13 @@ export default function AboutPage() {
                   </p>
                 </div>
               </div>
-              <div className="relative">
-                <ImagePlaceholder 
-                  label="About - How it works illustration" 
-                  className="w-full rounded-2xl"
-                  aspectRatio="square"
+              <div className="relative aspect-square overflow-hidden rounded-2xl">
+                <Image
+                  src="/images/about-community.png"
+                  alt="Community volunteers in orange vests working together along a roadside"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
             </div>

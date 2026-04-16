@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/card'
 import { Heart, Users, Lightbulb, Target } from 'lucide-react'
 import { ImagePlaceholder } from '@/components/image-placeholder'
 import { GradientText } from '@/components/gradient-text'
+import Image from 'next/image'
 
 const missionValues = [
   {
@@ -71,11 +72,13 @@ export default function MissionPage() {
                   </p>
                 </div>
               </div>
-              <div className="relative animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-                <ImagePlaceholder 
-                  label="Mission - Community building story" 
-                  className="w-full rounded-2xl"
-                  aspectRatio="square"
+              <div className="relative animate-fade-in-up aspect-square overflow-hidden rounded-2xl" style={{ animationDelay: '100ms' }}>
+                <Image
+                  src="/images/mission-started.png"
+                  alt="Volunteers working together to build a porch for a community member's home"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
             </div>
@@ -87,11 +90,13 @@ export default function MissionPage() {
       <section className="py-20 md:py-32 bg-secondary/30">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-            <div className="relative animate-slide-in-left order-2 md:order-1">
-              <ImagePlaceholder 
-                label="Mission - Why this matters illustration" 
-                className="w-full rounded-2xl"
-                aspectRatio="square"
+            <div className="relative animate-slide-in-left order-2 md:order-1 aspect-square overflow-hidden rounded-2xl">
+              <Image
+                src="/images/mission-matters.png"
+                alt="Front entrance of a community center building"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
             <div className="animate-slide-in-right order-1 md:order-2">
